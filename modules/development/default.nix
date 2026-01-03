@@ -20,14 +20,13 @@ with lib;
   };
 
   config = mkIf config.programs.development.shared.enable {
-    home.packages = with pkgs; mkMerge [
-      (mkIf config.programs.development.shared.enableCommonTools [
+    home.packages = with pkgs; 
+      (optionals config.programs.development.shared.enableCommonTools [
         curl
         wget
         jq
         tree
       ])
-      config.programs.development.shared.tools
-    ];
+      ++ config.programs.development.shared.tools;
   };
 }

@@ -29,11 +29,8 @@ with lib;
     programs.git = {
       enable = true;
       
-      userName = mkIf (config.programs.git.shared.userName != null)
-        config.programs.git.shared.userName;
-      
-      userEmail = mkIf (config.programs.git.shared.userEmail != null)
-        config.programs.git.shared.userEmail;
+      userName = mkIf (config.programs.git.shared.userName != null) config.programs.git.shared.userName;
+      userEmail = mkIf (config.programs.git.shared.userEmail != null) config.programs.git.shared.userEmail;
 
       extraConfig = {
         init.defaultBranch = config.programs.git.shared.defaultBranch;
