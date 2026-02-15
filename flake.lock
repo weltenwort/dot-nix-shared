@@ -1,0 +1,65 @@
+{
+  "nodes": {
+    "dot-nix-vim": {
+      "inputs": {
+        "nixCats": "nixCats",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1771172746,
+        "narHash": "sha256-189wyzYOcJOgedezGPMrECYAav49obUI0+L6gqrOUU8=",
+        "ref": "nixcats",
+        "rev": "9c74b607a686e437bdb3f7a1e4f84867a2ec6cfc",
+        "revCount": 21,
+        "type": "git",
+        "url": "ssh://git@github.com/weltenwort/dot-nix-vim.git"
+      },
+      "original": {
+        "ref": "nixcats",
+        "type": "git",
+        "url": "ssh://git@github.com/weltenwort/dot-nix-vim.git"
+      }
+    },
+    "nixCats": {
+      "locked": {
+        "lastModified": 1758545673,
+        "narHash": "sha256-MMcEImF7vHqImzrdRlSFCbzGq0ebi/5eSYwypNGr+AA=",
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "rev": "91f9a4b4605cc3aed835e180eb58a5bd73236407",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1770843696,
+        "narHash": "sha256-LovWTGDwXhkfCOmbgLVA10bvsi/P8eDDpRudgk68HA8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2343bbb58f99267223bc2aac4fc9ea301a155a16",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "dot-nix-vim": "dot-nix-vim",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
