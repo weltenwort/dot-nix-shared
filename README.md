@@ -63,14 +63,6 @@ Consumers do not need to declare `dot-nix-vim`; the dependency is fully owned an
 | [nix-home-elastic](https://github.com/weltenwort/nix-home-elastic) | home-manager configs for work dev VMs |
 | [dot-nix-dev](https://github.com/weltenwort/dot-nix-dev) | home-manager configs for personal dev VMs |
 
-## CI
-
-On push to `main`, the `notify-consumers` workflow sends a `repository_dispatch` event to each consumer repo, triggering their `update-shared` workflow to open a PR bumping the `dot-nix-shared` flake lock.
-
-### Required Secrets
-
-- `CONSUMER_DISPATCH_TOKEN`: A GitHub PAT with `repo` scope for all consumer repos.
-
 ## Adding a New Shared Module
 
 1. Create `home-manager-modules/<name>.nix` as a standard home-manager module.

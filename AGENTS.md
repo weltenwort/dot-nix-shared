@@ -35,8 +35,6 @@ home-manager-modules/
   shell.nix                            # Fish, eza, starship, fzf, bat, ripgrep, fd, direnv
   tmux.nix                             # Tmux with onedark theme and plugins
   nvim.nix                             # dot-nix-vim option configuration
-.github/workflows/
-  notify-consumers.yml                 # Dispatches update events to consumer repos
 ```
 
 ## Adding a New Module
@@ -46,7 +44,8 @@ home-manager-modules/
 3. Keep it platform-agnostic.
 4. Update this file and `README.md` to document the new module.
 
-## CI
+## Documentation Maintenance
 
-- `notify-consumers.yml` runs on push to `main` and sends `repository_dispatch` events to all consumer repos.
-- Requires `CONSUMER_DISPATCH_TOKEN` secret (GitHub PAT with `repo` scope).
+- Keep `README.md` and `AGENTS.md` in sync with the current repository state.
+- When changing behavior, defaults, module exports, file layout, or setup workflows, update both docs in the same change.
+- Before finalizing edits, verify examples and referenced modules against real files (`flake.nix`, `home-manager-modules/*`) to avoid stale documentation.
