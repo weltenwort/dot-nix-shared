@@ -19,7 +19,6 @@
         opencode = import ./home-manager-modules/opencode.nix;
         shell = import ./home-manager-modules/shell.nix;
         ssh = import ./home-manager-modules/ssh.nix;
-        tmux = import ./home-manager-modules/tmux.nix;
         nvim =
           { ... }:
           {
