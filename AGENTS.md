@@ -32,6 +32,8 @@ dot-nix-shared (this repo)
 flake.nix                              # Exposes homeModules attrset
 home-manager-modules/
   git.nix                              # Git, delta, gh, gitui, aliases
+  nix.nix                              # Nix tooling (nh)
+  opencode.nix                         # OpenCode AI coding assistant
   shell.nix                            # Fish, eza, starship, fzf, bat, ripgrep, fd, direnv
   tmux.nix                             # Tmux with onedark theme and plugins
   nvim.nix                             # dot-nix-vim option configuration

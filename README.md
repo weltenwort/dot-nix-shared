@@ -9,6 +9,8 @@ This flake exposes via `homeModules`:
 | Module | Description | Key programs |
 |--------|-------------|--------------|
 | `git` | Git, delta, gh, gitui, shell aliases | Configurable via `custom.git.userEmail` / `custom.git.userName` options |
+| `nix` | Nix tooling | `nh` (Nix helper) |
+| `opencode` | OpenCode AI coding assistant | `opencode` |
 | `shell` | Fish, eza, starship, fzf, bat, ripgrep, fd, direnv, nix-your-shell | Sets `EDITOR=nvim`, `PAGER=bat` (via `mkDefault`) |
 | `tmux` | Tmux with onedark theme, vi keybindings, plugins | copycat, pain-control, tmux-fzf, vim-tmux-navigator, sysstat, yank, open |
 | `nvim` | Neovim config via dot-nix-vim | `dot-nix-shared` owns and imports `dot-nix-vim.homeModule` internally |

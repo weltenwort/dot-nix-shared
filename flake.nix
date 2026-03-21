@@ -14,6 +14,8 @@
     {
       homeModules = {
         git = import ./home-manager-modules/git.nix;
+        nix = import ./home-manager-modules/nix.nix;
+        opencode = import ./home-manager-modules/opencode.nix;
         shell = import ./home-manager-modules/shell.nix;
         tmux = import ./home-manager-modules/tmux.nix;
         nvim =
