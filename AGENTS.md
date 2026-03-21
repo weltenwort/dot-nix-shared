@@ -32,9 +32,11 @@ dot-nix-shared (this repo)
 flake.nix                              # Exposes homeModules attrset
 home-manager-modules/
   git.nix                              # Git, delta, gh, gitui, aliases
+  lima.nix                             # Lima VM manager
   nix.nix                              # Nix tooling (nh)
   opencode.nix                         # OpenCode AI coding assistant
   shell.nix                            # Fish, eza, starship, fzf, bat, ripgrep, fd, direnv
+  ssh.nix                              # Base SSH config (enableDefaultConfig=false, lima/terraform includes)
   tmux.nix                             # Tmux with onedark theme and plugins
   nvim.nix                             # dot-nix-vim option configuration
 ```
