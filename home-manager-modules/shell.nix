@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   ...
 }:
 {
@@ -61,4 +62,13 @@
     enable = true;
     nix-direnv.enable = true;
   };
+
+  programs.vifm = {
+    enable = true;
+  };
+
+  home.packages = [
+    pkgs.hwatch
+    pkgs.poppler-utils
+  ];
 }
