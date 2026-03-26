@@ -1,6 +1,31 @@
 # dot-nix-shared
 
-Shared nix home-manager modules used across multiple configuration repos. These modules are platform-agnostic and contain only configuration that is common to all environments.
+Shared nix modules used across multiple configuration repos. Includes platform-agnostic home-manager modules and platform-specific darwin system modules.
+
+## Exported `darwinModules`
+
+This flake exposes via `darwinModules`:
+
+| Module | Description | Key options |
+|--------|-------------|-------------|
+| `base` | darwin system baseline: user account, nix settings, fish, homebrew, key remapping | `custom.darwin.mainUser` (required) |
+
+### Usage
+
+Add `inputs.dot-nix-shared.darwinModules.base` to your `darwinSystem` modules list, then set the required option in an accompanying inline module:
+
+```nix
+nix-darwin.lib.darwinSystem {
+  modules = [
+    inputs.dot-nix-shared.darwinModules.base
+    { custom.darwin.mainUser = "alice"; }
+    { system.configurationRevision = self.rev or self.dirtyRev or null; }
+    # host-specific overrides ...
+  ];
+}
+```
+
+> `system.configurationRevision` must be set in the consumer flake because it references the consumer's `self`.
 
 ## Exported `homeModules`
 
@@ -49,6 +74,12 @@ Consumers do not need to declare `dot-nix-vim`; the dependency is fully owned an
 
 ## Configurable Options
 
+### `custom.darwin.mainUser`
+
+- **Type:** `str`
+- **Default:** *(required — no default)*
+- **Description:** The main user account name for the darwin system. Used to configure `users.knownUsers`, `users.users.<name>`, and `system.primaryUser`.
+
 ### `custom.git.userEmail`
 
 - **Type:** `str`
@@ -69,8 +100,16 @@ Consumers do not need to declare `dot-nix-vim`; the dependency is fully owned an
 
 ## Adding a New Shared Module
 
+**Home-manager module (platform-agnostic):**
 1. Create `home-manager-modules/<name>.nix` as a standard home-manager module.
 2. Add it to the `homeModules` attrset in `flake.nix`.
 3. Keep it platform-agnostic — no `stdenv.isDarwin`/`isLinux` guards. Platform-specific config belongs in consumer repos.
 4. Use `lib.mkDefault` for values consumers may want to override.
 5. Use `lib.mkOption` for user-facing settings (see `git.nix` for the pattern).
+
+**Darwin system module:**
+1. Create `darwin-modules/<name>.nix` as a standard nix-darwin module.
+2. Add it to the `darwinModules` attrset in `flake.nix`.
+3. Darwin-specific options and packages are fine here.
+4. Use `lib.mkDefault` for host-overridable values (e.g. `system.stateVersion`, `nixpkgs.hostPlatform`).
+5. Use `lib.mkOption` for consumer-facing settings (see `custom.darwin.mainUser` in `base.nix` for the pattern).

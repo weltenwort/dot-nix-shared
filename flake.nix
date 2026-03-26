@@ -12,6 +12,10 @@
   outputs =
     inputs@{ ... }:
     {
+      darwinModules = {
+        base = import ./darwin-modules/base.nix;
+      };
+
       homeModules = {
         git = import ./home-manager-modules/git.nix;
         lima = import ./home-manager-modules/lima.nix;
