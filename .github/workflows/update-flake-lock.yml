@@ -13,10 +13,6 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v6
-      - name: Configure git auth for private inputs
-        run: |
-          git config --global url."https://x-access-token:${{ secrets.GH_TOKEN_FOR_UPDATES }}@github.com/".insteadOf "ssh://git@github.com/"
-          git config --global url."https://x-access-token:${{ secrets.GH_TOKEN_FOR_UPDATES }}@github.com/".insteadOf "git@github.com:"
       - uses: DeterminateSystems/determinate-nix-action@v3
       - uses: DeterminateSystems/update-flake-lock@v28
         with:
