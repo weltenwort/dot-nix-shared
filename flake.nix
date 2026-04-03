@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     dot-nix-vim = {
-      url = "github:weltenwort/dot-nix-vim/nixcats";
+      url = "git+ssh://git@github.com/weltenwort/dot-nix-vim?ref=nixcats";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
