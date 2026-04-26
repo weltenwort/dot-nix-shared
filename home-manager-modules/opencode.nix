@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = [
-    pkgs.opencode
-  ];
+  programs.opencode = {
+    enable = true;
+  };
 }
