@@ -34,13 +34,6 @@ in
         ".direnv"
       ];
 
-      delta = {
-        enable = true;
-        options = {
-          side-by-side = true;
-        };
-      };
-
       extraConfig = {
         merge.conflictstyle = "diff3";
         merge.tool = "fugitive";
@@ -66,6 +59,22 @@ in
       };
     };
 
+    programs.delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        side-by-side = true;
+      };
+    };
+
+    programs.less = {
+      enable = true;
+    };
+
+    home.sessionVariables = {
+      DELTA_PAGER = "less -RFX";
+    };
+
     home.packages = [
       pkgs.gitui
     ];
@@ -77,7 +86,10 @@ in
       gdca = "git diff --cached";
       gc = "git commit";
       gca = "git commit --amend";
+      gcA = "git commit -a";
       gco = "git checkout";
+      ga = "git add";
+      gau = "git add -u";
     };
 
     xdg.configFile."gitui/theme.ron".text = ''
