@@ -10,16 +10,16 @@
       "locked": {
         "lastModified": 1771172746,
         "narHash": "sha256-189wyzYOcJOgedezGPMrECYAav49obUI0+L6gqrOUU8=",
-        "ref": "nixcats",
+        "owner": "weltenwort",
+        "repo": "dot-nix-vim",
         "rev": "9c74b607a686e437bdb3f7a1e4f84867a2ec6cfc",
-        "revCount": 21,
-        "type": "git",
-        "url": "ssh://git@github.com/weltenwort/dot-nix-vim"
+        "type": "github"
       },
       "original": {
+        "owner": "weltenwort",
         "ref": "nixcats",
-        "type": "git",
-        "url": "ssh://git@github.com/weltenwort/dot-nix-vim"
+        "repo": "dot-nix-vim",
+        "type": "github"
       }
     },
     "nixCats": {
