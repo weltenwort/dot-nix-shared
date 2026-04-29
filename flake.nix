@@ -3,10 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    dot-nix-vim = {
-      url = "github:weltenwort/dot-nix-vim";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # dot-nix-vim = {
+    #   url = "github:weltenwort/dot-nix-vim";
+    #   # inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs =
@@ -23,7 +23,7 @@
         opencode = import ./home-manager-modules/opencode.nix;
         shell = import ./home-manager-modules/shell.nix;
         ssh = import ./home-manager-modules/ssh.nix;
-        nvim = import ./home-manager-modules/nvim.nix;
+        # nvim = import ./home-manager-modules/nvim.nix;
         # nvim =
         #   { ... }:
         #   {
