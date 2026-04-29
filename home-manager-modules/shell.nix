@@ -1,7 +1,6 @@
-{
-  lib,
-  pkgs,
-  ...
+{ lib
+, pkgs
+, ...
 }:
 let
   fish = "${pkgs.fish}/bin/fish";
@@ -41,6 +40,7 @@ in
 
   programs.nix-your-shell = {
     enable = true;
+    enableFishIntegration = true;
   };
 
   programs.fzf = {
@@ -66,12 +66,19 @@ in
     nix-direnv.enable = true;
   };
 
+  programs.btop = {
+    enable = true;
+  };
+
   programs.vifm = {
     enable = true;
   };
 
   home.packages = [
+    pkgs.atool
+    pkgs.gron
     pkgs.hwatch
+    pkgs.jq
     pkgs.poppler-utils
   ];
 
