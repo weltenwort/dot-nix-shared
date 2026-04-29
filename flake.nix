@@ -23,14 +23,15 @@
         opencode = import ./home-manager-modules/opencode.nix;
         shell = import ./home-manager-modules/shell.nix;
         ssh = import ./home-manager-modules/ssh.nix;
-        nvim =
-          { ... }:
-          {
-            imports = [
-              inputs.dot-nix-vim.homeModule
-              (import ./home-manager-modules/nvim.nix)
-            ];
-          };
+        nvim = import ./home-manager-modules/nvim.nix;
+        # nvim =
+        #   { ... }:
+        #   {
+        #     imports = [
+        #       inputs.dot-nix-vim.homeModule
+        #       (import ./home-manager-modules/nvim.nix)
+        #     ];
+        #   };
       };
     };
 }
