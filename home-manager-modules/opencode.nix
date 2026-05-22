@@ -20,6 +20,9 @@
         websearch = "allow";
         codesearch = "allow";
         question = "allow";
+        bash = {
+          "gh issue view *" = "allow";
+        };
       };
     };
   };
