@@ -101,12 +101,14 @@
 
         homebrew = {
           enable = true;
+          enableFishIntegration = true;
 
-          brews = [ ];
+          brews = [
+            "apfel"
+          ];
 
           casks = [
             "alfred"
-            "apfel"
             "blockblock"
             "contexts"
             "ghostty"
