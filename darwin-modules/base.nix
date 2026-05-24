@@ -1,8 +1,7 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
+{ lib
+, pkgs
+, config
+, ...
 }:
 {
   options = {
@@ -106,12 +105,16 @@
           brews = [ ];
 
           casks = [
+            "alfred"
+            "apfel"
+            "blockblock"
             "contexts"
-            "thaw"
+            "ghostty"
+            "iina"
+            "knockknock"
             "linearmouse"
             "stats"
-            "iina"
-            "ghostty"
+            "thaw"
           ];
         };
       }
