@@ -128,6 +128,7 @@
       (lib.mkIf cfg.enable {
         nix.distributedBuilds = true;
         nix.settings.builders-use-substitutes = true;
+        nix.settings.trusted-users = [ "root" username ];
         nix.buildMachines = [
           {
             hostName = "nix-lima-builder";
