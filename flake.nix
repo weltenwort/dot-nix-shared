@@ -18,6 +18,7 @@
 
       homeModules = {
         claude-code = import ./home-manager-modules/claude-code.nix;
+        devenv = import ./home-manager-modules/devenv.nix;
         git = import ./home-manager-modules/git.nix;
         lima = import ./home-manager-modules/lima.nix;
         nix = import ./home-manager-modules/nix.nix;
