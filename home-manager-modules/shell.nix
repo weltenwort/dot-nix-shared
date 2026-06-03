@@ -11,6 +11,8 @@ in
     PAGER = lib.mkDefault "bat";
   };
 
+  home.shell.enableFishIntegration = true;
+
   programs.fish = {
     enable = true;
     shellAliases = {
