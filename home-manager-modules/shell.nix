@@ -126,6 +126,7 @@ in
     ];
     extraConfig = ''
       set -g detach-on-destroy on
+      set -g allow-passthrough on
       set -sg escape-time 10
     '';
   };
