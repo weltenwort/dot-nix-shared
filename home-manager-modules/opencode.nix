@@ -29,6 +29,6 @@
 
   home.packages = [
     pkgs.skills
-    # pkgs.nono
+    pkgs.nono
   ];
 }
