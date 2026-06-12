@@ -23,6 +23,7 @@
         lima = import ./home-manager-modules/lima.nix;
         nix = import ./home-manager-modules/nix.nix;
         opencode = import ./home-manager-modules/opencode.nix;
+        python = import ./home-manager-modules/python.nix;
         shell = import ./home-manager-modules/shell.nix;
         ssh = import ./home-manager-modules/ssh.nix;
         # nvim = import ./home-manager-modules/nvim.nix;

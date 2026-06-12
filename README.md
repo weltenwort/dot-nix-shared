@@ -37,6 +37,7 @@ This flake exposes via `homeModules`:
 | `lima` | Lima VM manager | `lima` |
 | `nix` | Nix tooling | `nh` (Nix helper) |
 | `opencode` | OpenCode AI coding assistant | `opencode` |
+| `python` | Python interpreter and tooling | `python3`, `uv`, `pipx` |
 | `shell` | Fish, eza, starship, fzf, bat, ripgrep, fd, direnv, nix-your-shell | Sets `EDITOR=nvim`, `PAGER=bat` (via `mkDefault`) |
 | `ssh` | Base SSH config | `enableDefaultConfig=false`, includes for terraform and Lima SSH configs, `addKeysToAgent=yes` |
 | `tmux` | Tmux with onedark theme, vi keybindings, plugins | copycat, pain-control, tmux-fzf, vim-tmux-navigator, sysstat, yank, open |
