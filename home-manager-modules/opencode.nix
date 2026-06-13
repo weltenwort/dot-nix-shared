@@ -7,14 +7,17 @@
         "*" = "ask";
         "read" = {
           "*" = "allow";
-          "*.env" = "deny";
-          "*.env.*" = "deny";
-          "*.env.example" = "allow";
+          "*.env" = "ask";
+          "*.env.*" = "ask";
         };
         glob = "allow";
-        grep = "allow";
+        grep = {
+          "*" = "allow";
+          "*.env" = "ask";
+          "*.env.*" = "ask";
+        };
         lsp = "allow";
-        task = "allow";
+        todowrite = "allow";
         skill = "allow";
         webfetch = "allow";
         websearch = "allow";
