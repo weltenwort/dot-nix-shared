@@ -77,6 +77,8 @@ in
 
     home.packages = [
       pkgs.gitui
+      pkgs.lazygit
+      pkgs.lazyworktree
     ];
 
     home.shellAliases = {
