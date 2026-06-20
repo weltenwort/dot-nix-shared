@@ -34,4 +34,8 @@
     pkgs.skills
     pkgs.nono
   ];
+
+  home.shellAliases = {
+    nono-opencode-worktree = "nono run --profile=opencode --allow-cwd --allow $(git rev-parse --git-common-dir)/.. -- opencode";
+  };
 }
