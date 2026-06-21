@@ -9,7 +9,9 @@
           "*" = "allow";
           "*.env" = "ask";
           "*.env.*" = "ask";
+          "/nix/store" = "allow";
         };
+        edit = "allow";
         glob = "allow";
         grep = {
           "*" = "allow";
@@ -25,6 +27,13 @@
         question = "allow";
         bash = {
           "gh issue view *" = "allow";
+          "ls *" = "allow";
+          "head *" = "allow";
+          "find *" = "allow";
+          "grep *" = "allow";
+          "git diff *" = "allow";
+          "git status *" = "allow";
+          "git log *" = "allow";
         };
       };
     };
