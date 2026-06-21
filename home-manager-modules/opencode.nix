@@ -29,11 +29,13 @@
           "gh issue view *" = "allow";
           "ls *" = "allow";
           "head *" = "allow";
+          "echo *" = "allow";
           "find *" = "allow";
           "grep *" = "allow";
           "git diff *" = "allow";
           "git status *" = "allow";
           "git log *" = "allow";
+          "git show *" = "allow";
         };
       };
     };
