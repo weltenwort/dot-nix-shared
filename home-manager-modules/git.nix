@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 let
   cfg = config.custom.git;
@@ -71,13 +70,23 @@ in
       enable = true;
     };
 
+    programs.lazygit = {
+      enable = true;
+      settings = {
+        git = {
+          pagers = [
+            { pager = "delta --dark --paging=never"; }
+          ];
+        };
+      };
+    };
+
     home.sessionVariables = {
       DELTA_PAGER = "less -RFX";
     };
 
     home.packages = [
       pkgs.gitui
-      pkgs.lazygit
       pkgs.lazyworktree
     ];
 
