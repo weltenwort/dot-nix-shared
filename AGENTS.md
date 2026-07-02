@@ -37,6 +37,7 @@ darwin-modules/
   base.nix                             # darwin system baseline: user account, nix settings, homebrew, key remapping
 home-manager-modules/
   git.nix                              # Git, delta, gh, gitui, aliases
+  herdr.nix                            # Herdr package
   lima.nix                             # Lima VM manager
   nix.nix                              # Nix tooling (nh)
   opencode.nix                         # OpenCode AI coding assistant

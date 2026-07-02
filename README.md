@@ -34,6 +34,7 @@ This flake exposes via `homeModules`:
 | Module | Description | Key programs |
 |--------|-------------|--------------|
 | `git` | Git, delta, gh, gitui, shell aliases | Configurable via `custom.git.userEmail` / `custom.git.userName` options |
+| `herdr` | Herdr package | `herdr` |
 | `lima` | Lima VM manager | `lima` |
 | `nix` | Nix tooling | `nh` (Nix helper) |
 | `opencode` | OpenCode AI coding assistant | `opencode` |
