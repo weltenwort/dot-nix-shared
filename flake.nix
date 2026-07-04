@@ -2,7 +2,7 @@
   description = "Shared nix configuration modules for home-manager";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
   inputs.flake-utils = {
