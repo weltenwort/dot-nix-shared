@@ -77,7 +77,18 @@ in
           pagers = [
             { pager = "delta --dark --paging=never"; }
           ];
+          autoFetch = false;
         };
+        gui = {
+          scrollHeight = 8;
+        };
+        update = {
+          method = "never";
+        };
+        refresher = {
+          refreshInterval = 60;
+        };
+        disableStartupPopups = true;
       };
     };
 
