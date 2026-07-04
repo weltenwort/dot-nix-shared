@@ -39,7 +39,8 @@ home-manager-modules/
   git.nix                              # Git, delta, gh, gitui, aliases
   herdr.nix                            # Herdr package
   lima.nix                             # Lima VM manager
-  nix.nix                              # Nix tooling (nh)
+nix.nix                             # Nix tooling (nh, nix-flake-update-hydra wrapper)
+  nix-flake-update-hydra.sh            # Script backing nix-flake-update-hydra: `nix flake update` with nixpkgs inputs pinned to latest hydra-built channel revision
   opencode.nix                         # OpenCode AI coding assistant
   python.nix                           # Python interpreter, uv, pipx
   shell.nix                            # Fish, eza, starship, fzf, bat, ripgrep, fd, direnv

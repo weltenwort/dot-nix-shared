@@ -36,7 +36,7 @@ This flake exposes via `homeModules`:
 | `git` | Git, delta, gh, gitui, shell aliases | Configurable via `custom.git.userEmail` / `custom.git.userName` options |
 | `herdr` | Herdr package | `herdr` |
 | `lima` | Lima VM manager | `lima` |
-| `nix` | Nix tooling | `nh` (Nix helper) |
+| `nix` | Nix tooling | `nh` (Nix helper), `nix-flake-update-hydra` (wraps `nix flake update`, pinning nixpkgs inputs to the latest revision built by hydra) |
 | `opencode` | OpenCode AI coding assistant | `opencode` |
 | `python` | Python interpreter and tooling | `python3`, `uv`, `pipx` |
 | `shell` | Fish, eza, starship, fzf, bat, ripgrep, fd, direnv, nix-your-shell | Sets `EDITOR=nvim`, `PAGER=bat` (via `mkDefault`) |
