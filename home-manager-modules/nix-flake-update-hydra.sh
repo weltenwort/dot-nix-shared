@@ -66,10 +66,31 @@ pairs=$(
   ' "$lock"
 )
 
+# Identify positional input names (args not starting with "-") the user wants
+# to limit the update to. When non-empty, only override the nixpkgs inputs in
+# that set; otherwise override all matched nixpkgs inputs.
+positionals=()
+for arg in "${passthrough[@]:-}"; do
+  case "$arg" in
+    -*) ;;
+    *) positionals+=("$arg") ;;
+  esac
+done
+
 overrides=()
 if [ -n "$pairs" ]; then
   while IFS=$'\t' read -r name url; do
     [ -n "$name" ] || continue
+    if [ "${#positionals[@]}" -gt 0 ]; then
+      found=0
+      for p in "${positionals[@]}"; do
+        if [ "$p" = "$name" ]; then
+          found=1
+          break
+        fi
+      done
+      [ "$found" = 1 ] || continue
+    fi
     overrides+=(--override-input "$name" "$url")
   done <<EOF
 $pairs
