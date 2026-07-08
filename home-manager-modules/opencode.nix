@@ -35,6 +35,10 @@
           "find *" = "allow";
           "grep *" = "allow";
           "wc *" = "allow";
+          "sort *" = "allow";
+          "uniq *" = "allow";
+          "tail *" = "allow";
+          "rg *" = "allow";
           "git diff *" = "allow";
           "git status *" = "allow";
           "git log *" = "allow";
