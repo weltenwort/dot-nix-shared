@@ -27,11 +27,14 @@
         question = "allow";
         bash = {
           "gh issue view *" = "allow";
+          "gh pr view *" = "allow";
+          "gh pr diff *" = "allow";
           "ls *" = "allow";
           "head *" = "allow";
           "echo *" = "allow";
           "find *" = "allow";
           "grep *" = "allow";
+          "wc *" = "allow";
           "git diff *" = "allow";
           "git status *" = "allow";
           "git log *" = "allow";
