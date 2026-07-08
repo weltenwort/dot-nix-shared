@@ -20,6 +20,7 @@
         };
         lsp = "allow";
         todowrite = "allow";
+        task = "allow";
         skill = "allow";
         webfetch = "allow";
         websearch = "allow";
