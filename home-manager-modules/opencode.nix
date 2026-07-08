@@ -40,6 +40,7 @@
           "uniq *" = "allow";
           "tail *" = "allow";
           "rg *" = "allow";
+          "cat *" = "allow";
           "git diff *" = "allow";
           "git status *" = "allow";
           "git log *" = "allow";
