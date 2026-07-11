@@ -21,7 +21,7 @@
           devShells = {
             default = pkgs.mkShell {
               buildInputs = [
-                # pkgs.mcp-nixos
+                pkgs.mcp-nixos
                 pkgs.nil
                 pkgs.nixfmt
               ];
