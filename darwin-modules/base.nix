@@ -119,6 +119,8 @@
             "thaw"
           ];
         };
+
+        home-manager.backupFileExtension = "backup";
       }
 
       # Remote Linux builder via the ncps Lima VM.
