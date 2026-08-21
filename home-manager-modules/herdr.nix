@@ -14,6 +14,8 @@
         sound.enabled = false;
       };
       keys.prefix = "ctrl+a";
+      worktrees.directory = "~/worktrees";
     };
   };
 }
+
