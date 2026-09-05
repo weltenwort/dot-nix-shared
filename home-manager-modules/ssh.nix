@@ -8,10 +8,8 @@
       "~/.lima/*/ssh.config"
     ];
 
-    matchBlocks = {
-      "*" = {
-        addKeysToAgent = "yes";
-      };
+    settings = {
+      "*".addKeysToAgent = "yes";
     };
   };
 }

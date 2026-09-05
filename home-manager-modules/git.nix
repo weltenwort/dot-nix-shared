@@ -24,16 +24,15 @@ in
     programs.git = {
       enable = true;
 
-      userEmail = cfg.userEmail;
-      userName = cfg.userName;
-
       ignores = [
         ".vscode"
         ".envrc"
         ".direnv"
       ];
 
-      extraConfig = {
+      settings = {
+        user.email = cfg.userEmail;
+        user.name = cfg.userName;
         merge.conflictstyle = "diff3";
         merge.tool = "fugitive";
         mergetool.splice = {
