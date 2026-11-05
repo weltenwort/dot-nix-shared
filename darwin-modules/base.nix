@@ -110,13 +110,12 @@
           casks = [
             "alfred"
             "blockblock"
-            "contexts"
             "ghostty"
             "iina"
             "knockknock"
-            "linearmouse"
             "stats"
             "thaw"
+            "vorssaint"
           ];
         };
 
