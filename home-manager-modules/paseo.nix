@@ -1,4 +1,5 @@
 # Takes the flake inputs so packages can come from llm-agents.nix.
+# Installs paseo wrapped with npm on its PATH; see ../packages/paseo.nix.
 { inputs }:
 { pkgs, ... }:
 let
@@ -6,6 +7,9 @@ let
 in
 {
   home.packages = [
-    llmPkgs.paseo
+    (import ../packages/paseo.nix {
+      inherit pkgs;
+      inherit (llmPkgs) paseo;
+    })
   ];
 }

@@ -29,6 +29,14 @@
           pkgs = nixpkgs.legacyPackages.${system};
         in
         {
+          # Only for systems llm-agents.nix builds paseo for.
+          packages = nixpkgs.lib.optionalAttrs (inputs.llm-agents.packages ? ${system}) {
+            paseo = import ./packages/paseo.nix {
+              inherit pkgs;
+              inherit (inputs.llm-agents.packages.${system}) paseo;
+            };
+          };
+
           devShells = {
             default = pkgs.mkShell {
               buildInputs = [

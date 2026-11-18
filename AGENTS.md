@@ -29,11 +29,12 @@ dot-nix-shared (this repo)
 - **One concern per module.** `git.nix` = git tools, `shell.nix` = shell environment, `tmux.nix` = tmux, `nvim.nix` = neovim, `darwin-modules/base.nix` = darwin system baseline.
 - **The shared flake owns the `dot-nix-vim` dependency.** `homeModules.nvim` imports `dot-nix-vim.homeModule` internally; consumer repos only import `dot-nix-shared.homeModules.nvim`.
 - **The shared flake owns the `llm-agents` (numtide/llm-agents.nix) dependency.** Fast-moving AI tools (claude-code, opencode, herdr, skills, nono, paseo) come from it instead of nixpkgs. Modules that need it are written as `{ inputs }: { pkgs, ... }: { ... }` and wired in `flake.nix` via `import ./home-manager-modules/<name>.nix { inherit inputs; }`. The input intentionally does not follow `nixpkgs` so binaries from `cache.numtide.com` are usable.
+- **paseo is installed wrapped.** `packages/paseo.nix` prefixes PATH of `paseo`/`paseo-server` with the package's own `paseo.nodejs` so the daemon can run plugin `npm` builds. After switching from an unwrapped paseo, a running daemon must be stopped (`paseo daemon stop`) and started from the wrapped CLI; `paseo daemon restart` keeps the old environment.
 
 ## File Layout
 
 ```
-flake.nix                              # Exposes darwinModules and homeModules attrsets
+flake.nix                              # Exposes darwinModules, homeModules and packages (paseo) attrsets
 darwin-modules/
   base.nix                             # darwin system baseline: user account, nix settings (incl. numtide cache), homebrew, key remapping
 home-manager-modules/
@@ -45,12 +46,14 @@ home-manager-modules/
   nix.nix                              # Nix tooling (nh, nix-flake-update-hydra wrapper)
   nix-flake-update-hydra.sh            # Script backing nix-flake-update-hydra: `nix flake update` with nixpkgs inputs pinned to latest hydra-built channel revision
   opencode.nix                         # OpenCode + skills + nono (llm-agents.nix)
-  paseo.nix                            # Paseo agent orchestration CLI/daemon (llm-agents.nix)
+  paseo.nix                            # Paseo agent orchestration CLI/daemon (llm-agents.nix), installs packages/paseo.nix
   python.nix                           # Python interpreter, uv, pipx
   shell.nix                            # Fish, eza, starship, fzf, bat, ripgrep, fd, direnv
   ssh.nix                              # Base SSH config (enableDefaultConfig=false, lima/terraform includes)
   tmux.nix                             # Tmux with onedark theme and plugins
   nvim.nix                             # dot-nix-vim option configuration
+packages/
+  paseo.nix                            # paseo wrapped with its own nodejs on PATH so the daemon finds npm for plugin builds (avoids `spawn npm ENOENT`); also exported as packages.<system>.paseo
 ```
 
 ## Adding a New Module

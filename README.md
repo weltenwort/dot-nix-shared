@@ -40,12 +40,24 @@ This flake exposes via `homeModules`:
 | `lima` | Lima VM manager | `lima` |
 | `nix` | Nix tooling | `nh` (Nix helper), `nix-flake-update-hydra` (wraps `nix flake update`, pinning nixpkgs inputs to the latest revision built by hydra) |
 | `opencode` | OpenCode AI coding assistant | `opencode`, `skills`, `nono` (from llm-agents.nix) |
-| `paseo` | Paseo agent orchestration CLI and daemon | `paseo` (from llm-agents.nix) |
+| `paseo` | Paseo agent orchestration CLI and daemon | `paseo`, `paseo-server` (from llm-agents.nix, wrapped with nodejs/npm on their PATH for plugin builds) |
 | `python` | Python interpreter and tooling | `python3`, `uv`, `pipx` |
 | `shell` | Fish, eza, starship, fzf, bat, ripgrep, fd, direnv, nix-your-shell | Sets `EDITOR=nvim`, `PAGER=bat` (via `mkDefault`) |
 | `ssh` | Base SSH config | `enableDefaultConfig=false`, includes for terraform and Lima SSH configs, `addKeysToAgent=yes` |
 | `tmux` | Tmux with onedark theme, vi keybindings, plugins | copycat, pain-control, tmux-fzf, vim-tmux-navigator, sysstat, yank, open |
 | `nvim` | Neovim config via dot-nix-vim | `dot-nix-shared` owns and imports `dot-nix-vim.homeModule` internally |
+
+## Exported `packages`
+
+| Package | Description |
+|---------|-------------|
+| `paseo` | The wrapped paseo installed by `homeModules.paseo` (only on systems llm-agents.nix supports: `aarch64-darwin`, `aarch64-linux`, `x86_64-linux`). Try it with `nix run .#paseo -- --version`. |
+
+### paseo and npm
+
+paseo's daemon builds npm plugins by running the plugin manifest's `build` commands (e.g. `npm ci`) with `npm` taken from its own PATH. The llm-agents.nix package exposes no npm, so plugin installs fail with `spawn npm ENOENT`. `packages/paseo.nix` wraps `paseo` and `paseo-server` with the package's own nodejs (`paseo.nodejs`, currently 22.x) prefixed to PATH; the daemon inherits the CLI's environment, so it gets npm too, while node/npm stay out of other shells.
+
+A daemon that was started by an unwrapped paseo keeps its old environment. After switching, run `paseo daemon stop` and start it again from the wrapped CLI (`paseo daemon restart` reuses the old supervisor launch).
 
 ## Usage
 
