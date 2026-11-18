@@ -28,20 +28,24 @@ dot-nix-shared (this repo)
 - **Use `lib.mkOption`** for user-facing settings (see `custom.git.userEmail` in `git.nix`, `custom.darwin.mainUser` in `darwin-modules/base.nix`).
 - **One concern per module.** `git.nix` = git tools, `shell.nix` = shell environment, `tmux.nix` = tmux, `nvim.nix` = neovim, `darwin-modules/base.nix` = darwin system baseline.
 - **The shared flake owns the `dot-nix-vim` dependency.** `homeModules.nvim` imports `dot-nix-vim.homeModule` internally; consumer repos only import `dot-nix-shared.homeModules.nvim`.
+- **The shared flake owns the `llm-agents` (numtide/llm-agents.nix) dependency.** Fast-moving AI tools (claude-code, opencode, herdr, skills, nono, paseo) come from it instead of nixpkgs. Modules that need it are written as `{ inputs }: { pkgs, ... }: { ... }` and wired in `flake.nix` via `import ./home-manager-modules/<name>.nix { inherit inputs; }`. The input intentionally does not follow `nixpkgs` so binaries from `cache.numtide.com` are usable.
 
 ## File Layout
 
 ```
 flake.nix                              # Exposes darwinModules and homeModules attrsets
 darwin-modules/
-  base.nix                             # darwin system baseline: user account, nix settings, homebrew, key remapping
+  base.nix                             # darwin system baseline: user account, nix settings (incl. numtide cache), homebrew, key remapping
 home-manager-modules/
+  claude-code.nix                      # Claude Code + skills (llm-agents.nix)
+  devenv.nix                           # devenv with fish hook
   git.nix                              # Git, delta, gh, gitui, aliases
-  herdr.nix                            # Herdr package
+  herdr.nix                            # Herdr (llm-agents.nix)
   lima.nix                             # Lima VM manager
-nix.nix                             # Nix tooling (nh, nix-flake-update-hydra wrapper)
+  nix.nix                              # Nix tooling (nh, nix-flake-update-hydra wrapper)
   nix-flake-update-hydra.sh            # Script backing nix-flake-update-hydra: `nix flake update` with nixpkgs inputs pinned to latest hydra-built channel revision
-  opencode.nix                         # OpenCode AI coding assistant
+  opencode.nix                         # OpenCode + skills + nono (llm-agents.nix)
+  paseo.nix                            # Paseo agent orchestration CLI/daemon (llm-agents.nix)
   python.nix                           # Python interpreter, uv, pipx
   shell.nix                            # Fish, eza, starship, fzf, bat, ripgrep, fd, direnv
   ssh.nix                              # Base SSH config (enableDefaultConfig=false, lima/terraform includes)

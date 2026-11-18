@@ -8,7 +8,7 @@ This flake exposes via `darwinModules`:
 
 | Module | Description | Key options |
 |--------|-------------|-------------|
-| `base` | darwin system baseline: user account, nix settings, fish, homebrew, key remapping | `custom.darwin.mainUser` (required) |
+| `base` | darwin system baseline: user account, nix settings (incl. `cache.numtide.com` substituter), fish, homebrew, key remapping | `custom.darwin.mainUser` (required) |
 
 ### Usage
 
@@ -33,11 +33,14 @@ This flake exposes via `homeModules`:
 
 | Module | Description | Key programs |
 |--------|-------------|--------------|
+| `claude-code` | Claude Code AI coding assistant | `claude-code`, `skills` (from llm-agents.nix) |
+| `devenv` | devenv with fish hook | `devenv` |
 | `git` | Git, delta, gh, gitui, shell aliases | Configurable via `custom.git.userEmail` / `custom.git.userName` options |
-| `herdr` | Herdr package | `herdr` |
+| `herdr` | Herdr terminal workspace manager | `herdr` (from llm-agents.nix) |
 | `lima` | Lima VM manager | `lima` |
 | `nix` | Nix tooling | `nh` (Nix helper), `nix-flake-update-hydra` (wraps `nix flake update`, pinning nixpkgs inputs to the latest revision built by hydra) |
-| `opencode` | OpenCode AI coding assistant | `opencode` |
+| `opencode` | OpenCode AI coding assistant | `opencode`, `skills`, `nono` (from llm-agents.nix) |
+| `paseo` | Paseo agent orchestration CLI and daemon | `paseo` (from llm-agents.nix) |
 | `python` | Python interpreter and tooling | `python3`, `uv`, `pipx` |
 | `shell` | Fish, eza, starship, fzf, bat, ripgrep, fd, direnv, nix-your-shell | Sets `EDITOR=nvim`, `PAGER=bat` (via `mkDefault`) |
 | `ssh` | Base SSH config | `enableDefaultConfig=false`, includes for terraform and Lima SSH configs, `addKeysToAgent=yes` |
@@ -73,6 +76,17 @@ Then import modules in a home-manager configuration:
 ```
 
 Consumers do not need to declare `dot-nix-vim`; the dependency is fully owned and pinned by `dot-nix-shared`.
+
+### AI tooling from llm-agents.nix
+
+The `claude-code`, `opencode`, `herdr` and `paseo` modules install their packages from [numtide/llm-agents.nix](https://github.com/numtide/llm-agents.nix), which tracks upstream releases much faster than nixpkgs. The `llm-agents` input is owned by this flake and deliberately does **not** follow `nixpkgs`, so its prebuilt binaries can be fetched from `https://cache.numtide.com`.
+
+To get cache hits, the consuming machine's nix config must trust that cache (flake `nixConfig` is not inherited from inputs). `darwinModules.base` sets this up on macOS; on Linux add it to `/etc/nix/nix.conf`:
+
+```
+extra-substituters = https://cache.numtide.com
+extra-trusted-public-keys = niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
+```
 
 ## Configurable Options
 

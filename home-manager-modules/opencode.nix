@@ -1,7 +1,13 @@
+# Takes the flake inputs so packages can come from llm-agents.nix.
+{ inputs }:
 { pkgs, ... }:
+let
+  llmPkgs = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   programs.opencode = {
     enable = true;
+    package = llmPkgs.opencode;
     settings = {
       permission = {
         "*" = "ask";
@@ -51,8 +57,8 @@
   };
 
   home.packages = [
-    pkgs.skills
-    pkgs.nono
+    llmPkgs.skills
+    llmPkgs.nono
   ];
 
   home.shellAliases = {

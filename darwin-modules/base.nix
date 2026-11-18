@@ -74,6 +74,12 @@
         # Necessary for using flakes on this system.
         nix.settings.experimental-features = "nix-command flakes";
 
+        # Prebuilt binaries for the llm-agents.nix packages used by the home modules.
+        nix.settings.extra-substituters = [ "https://cache.numtide.com" ];
+        nix.settings.extra-trusted-public-keys = [
+          "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+        ];
+
         # Enable alternative shell support in nix-darwin.
         programs.fish.enable = true;
 
