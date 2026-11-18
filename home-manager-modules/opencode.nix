@@ -7,7 +7,12 @@ in
 {
   programs.opencode = {
     enable = true;
-    package = llmPkgs.opencode;
+    # OpenCode 2 (llm-agents.nix `opencode2`), exposed as `opencode`; see
+    # ../packages/opencode.nix. llm-agents.nix's `opencode` is still 1.x.
+    package = import ../packages/opencode.nix {
+      inherit pkgs;
+      inherit (llmPkgs) opencode2;
+    };
     settings = {
       permission = {
         "*" = "ask";

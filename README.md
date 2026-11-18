@@ -39,7 +39,7 @@ This flake exposes via `homeModules`:
 | `herdr` | Herdr terminal workspace manager | `herdr` (from llm-agents.nix) |
 | `lima` | Lima VM manager | `lima` |
 | `nix` | Nix tooling | `nh` (Nix helper), `nix-flake-update-hydra` (wraps `nix flake update`, pinning nixpkgs inputs to the latest revision built by hydra) |
-| `opencode` | OpenCode AI coding assistant | `opencode`, `skills`, `nono` (from llm-agents.nix) |
+| `opencode` | OpenCode AI coding assistant | `opencode` (OpenCode 2, llm-agents.nix `opencode2`), `skills`, `nono` (from llm-agents.nix) |
 | `paseo` | Paseo agent orchestration CLI and daemon | `paseo`, `paseo-server` (from llm-agents.nix, wrapped with nodejs/npm on their PATH for plugin builds) |
 | `python` | Python interpreter and tooling | `python3`, `uv`, `pipx` |
 | `shell` | Fish, eza, starship, fzf, bat, ripgrep, fd, direnv, nix-your-shell | Sets `EDITOR=nvim`, `PAGER=bat` (via `mkDefault`) |
@@ -51,6 +51,7 @@ This flake exposes via `homeModules`:
 
 | Package | Description |
 |---------|-------------|
+| `opencode` | OpenCode 2 as installed by `homeModules.opencode`: llm-agents.nix's `opencode2` plus a `bin/opencode` symlink (llm-agents.nix's own `opencode` is still 1.x). Try it with `nix run .#opencode -- --version`. |
 | `paseo` | The wrapped paseo installed by `homeModules.paseo` (only on systems llm-agents.nix supports: `aarch64-darwin`, `aarch64-linux`, `x86_64-linux`). Try it with `nix run .#paseo -- --version`. |
 
 ### paseo and npm

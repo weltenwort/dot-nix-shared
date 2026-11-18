@@ -29,8 +29,12 @@
           pkgs = nixpkgs.legacyPackages.${system};
         in
         {
-          # Only for systems llm-agents.nix builds paseo for.
+          # Only for systems llm-agents.nix builds these for.
           packages = nixpkgs.lib.optionalAttrs (inputs.llm-agents.packages ? ${system}) {
+            opencode = import ./packages/opencode.nix {
+              inherit pkgs;
+              inherit (inputs.llm-agents.packages.${system}) opencode2;
+            };
             paseo = import ./packages/paseo.nix {
               inherit pkgs;
               inherit (inputs.llm-agents.packages.${system}) paseo;
